@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Boda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-blue: #1a2a40;
+            --beige: #fdfaf5;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--beige);
+            color: var(--dark-blue);
+            scroll-behavior: smooth;
+        }
+        .font-serif-title { font-family: 'Cinzel', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        
+        /* CONTENEDOR PRINCIPAL DEL HERO */
+        .hero-container {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        /* CAPA DE FONDO: Aquí cambias la URL y la rotación */
+        .hero-background {
+            position: absolute;
+            top: -10%; /* Margen extra para que no se vean bordes al girar */
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            /* CAMBIA LA URL DE ABAJO PARA CAMBIAR LA IMAGEN */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            /* CAMBIA EL VALOR DE deg PARA GIRAR LA IMAGEN (ej: 5deg, 180deg, -10deg) */
+            transform: rotate(180deg); 
+            transition: transform 0.5s ease;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background-color: #b08d4a;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+            transform: scale(1.05);
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--dark-blue);
+        }
+
+        .divider {
+            height: 2px;
+            width: 80px;
+            background-color: var(--gold);
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero-container px-4">
+        <!-- Capa de fondo girada -->
+        <div class="hero-background"></div>
+
+        <!-- Contenido (No se gira) -->
+        <h2 class="text-xl md:text-2xl mb-4 tracking-[0.3em] font-serif-title uppercase">Nuestra Boda</h2>
+        <h1 class="text-6xl md:text-8xl font-script mb-2">Joana & José</h1>
+        
+        <p class="text-xl md:text-2xl font-serif-title tracking-[0.2em] mb-4">2 • MAYO • 2026</p>
+        
+        <p class="text-lg md:text-xl font-light italic mb-10">"Donde hay amor, hay vida"</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#confirmacion" class="btn-primary uppercase text-sm font-bold tracking-widest">
+                Confirmar Asistencia
+            </a>
+            <a href="#detalles" class="btn-outline uppercase text-sm font-bold tracking-widest">
+                Ver Detalles
+            </a>
+        </div>
+
+        <div class="mt-16 animate-bounce">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </div>
+    </header>
+
+    <!-- Countdown Section -->
+    <section class="py-20 px-6 text-center bg-white">
+        <h3 class="font-serif-title text-2xl mb-8 uppercase tracking-widest">Faltan Solo</h3>
+        <div id="countdown" class="flex justify-center gap-4 md:gap-10">
+            <div class="flex flex-col">
+                <span id="days" class="text-4xl md:text-6xl font-serif-title text-[#c5a059]">00</span>
+                <span class="text-xs uppercase tracking-widest mt-2">Días</span>
+            </div>
+            <div class="flex flex-col text-4xl md:text-6xl font-serif-title text-[#c5a059]">:</div>
+            <div class="flex flex-col">
+                <span id="hours" class="text-4xl md:text-6xl font-serif-title text-[#c5a059]">00</span>
+                <span class="text-xs uppercase tracking-widest mt-2">Horas</span>
+            </div>
+            <div class="flex flex-col text-4xl md:text-6xl font-serif-title text-[#c5a059]">:</div>
+            <div class="flex flex-col">
+                <span id="minutes" class="text-4xl md:text-6xl font-serif-title text-[#c5a059]">00</span>
+                <span class="text-xs uppercase tracking-widest mt-2">Minutos</span>
+            </div>
+            <div class="flex flex-col text-4xl md:text-6xl font-serif-title text-[#c5a059]">:</div>
+            <div class="flex flex-col">
+                <span id="seconds" class="text-4xl md:text-6xl font-serif-title text-[#c5a059]">00</span>
+                <span class="text-xs uppercase tracking-widest mt-2">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-beige overflow-hidden">
+        <div class="container mx-auto px-6">
+            <h3 class="font-serif-title text-3xl text-center mb-12 uppercase">Nuestra Historia en Fotos</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto pareja 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg md:mt-10">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto pareja 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="h-80 bg-gray-200 rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto pareja 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Details Section -->
+    <section id="detalles" class="py-20 container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Ceremonia -->
+            <div class="card p-10 text-center border-t-4 border-[#c5a059]">
+                <div class="mb-6 flex justify-center">
+                    <svg class="w-12 h-12 text-[#c5a059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 21l-8.228-4.636a2 2 0 01-1.096-1.782V7.1a2 2 0 011.096-1.782L12 1l8.228 4.318a2 2 0 011.096 1.782v7.482a2 2 0 01-1.096 1.782L12 21z"></path></svg>
+                </div>
+                <h4 class="font-serif-title text-2xl mb-4">Ceremonia Religiosa</h4>
+                <p class="text-gray-600 mb-2">09:30 Horas</p>
+                <p class="font-semibold">Santuario "María Auxiliadora" - Colegio Salesiano "Santa Rosa"</p>
+                <p class="text-gray-500 text-sm mb-6">Calle Principal #123, Centro Histórico</p>
+                <a href="#" class="text-[#c5a059] border-b border-[#c5a059] pb-1 hover:text-black hover:border-black transition">Ver Mapa</a>
+            </div>
+
+            <!-- Recepción -->
+            <div class="card p-10 text-center border-t-4 border-[#c5a059]">
+                <div class="mb-6 flex justify-center">
+                    <svg class="w-12 h-12 text-[#c5a059]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h4 class="font-serif-title text-2xl mb-4">Recepción</h4>
+                <p class="text-gray-600 mb-2">12:00 Horas</p>
+                <p class="font-semibold">Hacienda Vargas</p>
+                <p class="text-gray-500 text-sm mb-6">Av. Los Olivos #456, Jardines del Valle</p>
+                <a href="#" class="text-[#c5a059] border-b border-[#c5a059] pb-1 hover:text-black hover:border-black transition">Ver Mapa</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code & Gifts -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-4xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Codigo de vestimenta -->
+                <div>
+                    <h4 class="font-serif-title text-2xl mb-6">Código de Vestimenta</h4>
+                    <div class="divider"></div>
+                    <p class="text-xl font-medium tracking-widest text-gray-700">FORMAL RIGUROSO</p>
+                    <p class="text-gray-500 mt-4 leading-relaxed">Damas: Vestido largo<br>Caballeros: Traje oscuro o Esmoquin</p>
+                </div>
+
+                <!-- Mesa de Regalos -->
+                <div>
+                    <h4 class="font-serif-title text-2xl mb-6">Mesa de Regalos</h4>
+                    <div class="divider"></div>
+                    <p class="text-gray-600 mb-6">Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros:</p>
+                    <div class="flex justify-center gap-6">
+                        <div class="text-center">
+                            <img src="https://logodownload.org/wp-content/uploads/2014/10/amazon-logo-1.png" alt="Amazon" class="h-6 mx-auto mb-2 opacity-60">
+                            <p class="text-xs font-bold text-gray-400 italic">No. 1234567</p>
+                        </div>
+                        <div class="text-center">
+                             <div class="h-6 flex items-center justify-center font-bold text-gray-400">LIVERPOOL</div>
+                            <p class="text-xs font-bold text-gray-400 italic">No. 7654321</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section id="confirmacion" class="py-24 bg-[#1a2a40] text-white text-center px-6">
+        <h3 class="font-serif-title text-3xl mb-6 uppercase tracking-widest">Confirmación de Asistencia</h3>
+        <p class="mb-10 text-gray-300 max-w-lg mx-auto italic">Agradecemos confirmar tu asistencia antes del 20 de Abril para poder planear cada detalle.</p>
+        
+        <a href="https://wa.me/+51976906558?text=Hola!%20Confirmo%20mi%20asistencia%20para%20la%20boda%20de%20Joana%20y%20José" target="_blank" class="btn-primary uppercase font-bold tracking-widest">
+            Confirmar por WhatsApp
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center bg-beige">
+        <p class="font-script text-3xl text-[#c5a059]">Joana & José</p>
+        <p class="text-xs text-gray-400 mt-4 tracking-tighter uppercase font-medium">Cupo limitado</p>
+    </footer>
+
+    <script>
+        // Lógica del contador
+        const weddingDate = new Date("May 2, 2026 09:30:00").getTime();
+
+        const updateCountdown = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(updateCountdown);
+                document.getElementById("countdown").innerHTML = "¡HOY ES EL GRAN DÍA!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
