@@ -72,6 +72,84 @@
             color: black;
             border-color: white;
         }
+        /* Itinerario Estético Alternado */
+        .timeline-wrapper {
+            position: relative;
+            padding: 40px 0;
+        }
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-wrapper::before {
+                left: 20px;
+                transform: none;
+            }
+        }
+
+        .timeline-item-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item-container:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 42%;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.1);
+            border-bottom: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border: 4px solid var(--ivory);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item-container, .timeline-item-container:nth-child(even) {
+                flex-direction: row;
+                justify-content: flex-start;
+                padding-left: 50px;
+            }
+            .timeline-content {
+                width: 90%;
+            }
+            .timeline-dot {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -203,6 +281,76 @@
         </div>
     </section>
 
+        <!-- Itinerario Estético Alternado -->
+    <section id="itinerario" class="py-24 px-6 bg-stone-50 reveal overflow-hidden">
+        <h3 class="text-center font-serif-elegant text-3xl mb-16 tracking-widest uppercase">Itinerario de la Boda</h3>
+        
+        <div class="max-w-6xl mx-auto timeline-wrapper">
+            
+            <!-- Item 1 -->
+            <div class="timeline-item-container reveal">
+                <div class="timeline-dot">⛪</div>
+                <div class="timeline-content">
+                    <span class="text-gold font-bold text-lg">17:00 HRS</span>
+                    <h4 class="font-serif-elegant text-xl mt-2 mb-3">Ceremonia Religiosa</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Acompáñanos en la Parroquia de San Ignacio para celebrar nuestra unión ante Dios.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="timeline-item-container reveal">
+                <div class="timeline-dot">🥂</div>
+                <div class="timeline-content">
+                    <span class="text-gold font-bold text-lg">18:30 HRS</span>
+                    <h4 class="font-serif-elegant text-xl mt-2 mb-3">Coctel de Bienvenida</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Iniciamos la celebración con bebidas refrescantes y canapés en los jardines.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="timeline-item-container reveal">
+                <div class="timeline-dot">🍽️</div>
+                <div class="timeline-content">
+                    <span class="text-gold font-bold text-lg">20:00 HRS</span>
+                    <h4 class="font-serif-elegant text-xl mt-2 mb-3">Cena de Gala</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Un banquete especial preparado para compartir nuestro primer momento como esposos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="timeline-item-container reveal">
+                <div class="timeline-dot">💃</div>
+                <div class="timeline-content">
+                    <span class="text-gold font-bold text-lg">22:00 HRS</span>
+                    <h4 class="font-serif-elegant text-xl mt-2 mb-3">Primer Baile</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        El momento más romántico de la noche. Apertura oficial de la pista de baile.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="timeline-item-container reveal">
+                <div class="timeline-dot">🎶</div>
+                <div class="timeline-content">
+                    <span class="text-gold font-bold text-lg">23:00 HRS</span>
+                    <h4 class="font-serif-elegant text-xl mt-2 mb-3">¡Fiesta Total!</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Música en vivo, DJ y sorpresas durante toda la noche. ¡A bailar!
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
     <!-- Regalos -->
     <section class="py-20 px-6 text-center reveal">
         <h3 class="font-serif-elegant text-3xl mb-12 tracking-widest uppercase">Mesa de Regalos</h3>
